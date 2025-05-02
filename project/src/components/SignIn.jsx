@@ -15,36 +15,32 @@ const SignIn = () => {
         setPasswordVisible(!passwordVisible);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         if (!email || !password) {
-            toast.error('Please enter both email and password.', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                theme: "light",
-            });
+            toast.error('Please enter both email and password.');
             return;
         }
 
-        toast.success('Login simulated. (No auth logic here)', {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            theme: "light",
-        });
+        try {
+            const response = await axios.post('http://localhost:8080/api/v1/auth/login', {
+                email,
+                password
+            });
 
-        // Redirect to dashboard as placeholder
-        setTimeout(() => {
-            navigate('/dashboard');
-        }, 2000);
+            if (response.data && response.data.success) {
+                toast.success('Login successful!');
+                setTimeout(() => {
+                    navigate('/dashboard');
+                }, 2000);
+            } else {
+                toast.error('Invalid email or password.');
+            }
+        } catch (error) {
+            console.error('Login failed:', error);
+            toast.error('Login failed. Please try again.');
+        }
     };
 
     const handleRegisterClick = () => {
