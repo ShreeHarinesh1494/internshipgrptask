@@ -15,19 +15,26 @@ import java.util.ArrayList;
 public class DeviceService {
     private final DeviceRepository deviceRepository;
 
-    public DeviceResponse registerDevice(DeviceRequest request){
+    public DeviceResponse registerDevice(DeviceRequest request) {
         Device device = new Device();
         device.setDeviceId(request.getDeviceid());
         device.setUsername(request.getUsername());
         device.setThreshold(request.getThreshold());
 
+        System.out.println("The Device id: "+request.getDeviceid());
+
+        // Save the device entity
         Device savedDevice = deviceRepository.save(device);
-        DeviceResponse save = new DeviceResponse();
-        save.setDeviceid(save.getDeviceid());
-        save.setUsername(savedDevice.getUsername());
-        save.setThreshold(save.getThreshold());
-        return save;
+
+        // Now map the saved device values to the response
+        DeviceResponse response = new DeviceResponse();
+        response.setDeviceid(savedDevice.getDeviceId());  // Use savedDevice to get correct values
+        response.setUsername(savedDevice.getUsername());
+        response.setThreshold(savedDevice.getThreshold());
+
+        return response;
     }
+
     public List<DeviceResponse> getallDeviceByUsername(String username){
         List<Device> devices = deviceRepository.findByUsername(username);
         List<DeviceResponse> responseList = new ArrayList<>();
@@ -55,22 +62,28 @@ public class DeviceService {
 
     }
     public DeviceResponse updateThresholdByUsernameandDeviceId(String username, int id, String newThreshold) {
-        Optional<Device> optionalDevice = deviceRepository.findByUsernameAndDeviceId(username, id);
+        List<Device> devices = deviceRepository.findDevicesByUsernameAndDeviceId(username, id);
 
-        if (optionalDevice.isPresent()) {
-            Device device = optionalDevice.get();
-            device.setThreshold(newThreshold);
-            Device updated = deviceRepository.save(device);
+        if (devices != null && !devices.isEmpty()) {
+            for (Device device : devices) {
+                device.setThreshold(newThreshold);
+                deviceRepository.save(device); // Save each updated device
+            }
 
+            // Prepare response for one of the updated devices (or you can iterate over all if needed)
+            Device updatedDevice = devices.get(0);
             DeviceResponse response = new DeviceResponse();
-            response.setDeviceid(updated.getDeviceId());
-            response.setUsername(updated.getUsername());
-            response.setThreshold(updated.getThreshold());
+            response.setDeviceid(updatedDevice.getDeviceId());
+            response.setUsername(updatedDevice.getUsername());
+            response.setThreshold(updatedDevice.getThreshold());
             return response;
         }
 
-        return null;
+        return null; // If no devices found
     }
+
+
+
 
 
 }

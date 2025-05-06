@@ -54,7 +54,7 @@ const SignUp = () => {
         </div>
 
         <div className="lg:w-[28rem] mx-auto">
-          <h2 className="text-3xl font-bold mb-2 text-white">Create your account</h2>
+        <h2 className="text-3xl font-light tracking-wide mb-2 text-white">CREATE AN ACCOUNT</h2>
           <p className="text-gray-400 mb-6">Fill in the details below to get started.</p>
 
           {error && (
@@ -135,16 +135,15 @@ const SignUp = () => {
       {/* Right Image Section */}
       <div className="hidden md:block md:w-1/2 relative">
         <img
-          src="https://images.unsplash.com/photo-1460551882935-745bdcaf8009?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src="https://images.unsplash.com/photo-1607014454379-c16a1020535d?q=80&w=2079&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="SignUp Visual"
           className="absolute inset-0 w-full h-full object-cover brightness-[0.5] grayscale"
         />
         <div className="absolute bottom-0 z-10 p-8 text-white bg-gradient-to-t from-black via-transparent to-transparent">
-          <p className="text-xl font-semibold mb-3 text-white">
+          <p className="text-xl font-light tracking-wide mb-3 text-white">
             “Join us and start your journey today.”
           </p>
-          <p className="font-medium">John Elmond</p>
-          <p className="text-sm opacity-80">Founder, Nexora</p>
+          <p className="font-medium">— Nexora</p>
         </div>
       </div>
     </div>

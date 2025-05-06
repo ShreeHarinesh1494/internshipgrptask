@@ -45,7 +45,7 @@ const Login = () => {
     </div>
 
     <div className="lg:w-[28rem] mx-auto">
-      <h2 className="text-3xl font-bold mb-2 text-white">Welcome back</h2>
+      <h2 className="text-3xl font-light tracking-wide  mb-2 text-white">WELCOME BACK</h2>
       <p className="text-gray-400 mb-6">Please enter your credentials to continue.</p>
 
       {error && (
@@ -102,8 +102,7 @@ const Login = () => {
       <p className="text-xl font-semibold mb-3 text-white">
         “We work 10x faster than competitors, while they’re stuck in debt.”
       </p>
-      <p className="font-medium">John Elmond</p>
-      <p className="text-sm opacity-80">Founder, Emogue</p>
+      <p className="font-medium">— Nexora</p>
     </div>
   </div>
 </div>

@@ -8,7 +8,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface DeviceRepository extends JpaRepository<Device, String> {
+public interface DeviceRepository extends JpaRepository<Device, Long> { // Use Long here for primary key type
     List<Device> findByUsername(String username);
-    Optional<Device> findByUsernameAndDeviceId(String username, int deviceid);
+    Optional<Device> findByUsernameAndDeviceId(String username, int deviceId);
+    List<Device> findDevicesByUsernameAndDeviceId(String username, int deviceId);
+
+
 }

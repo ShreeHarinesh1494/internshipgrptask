@@ -22,7 +22,7 @@ function App() {
         <Route path="/otp" element={<OTPPage />} />
         
         {/* Protected Route for Dashboard */}
-        <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
+        <Route path="/dashboard/*" element={<ProtectedRoute element={<Dashboard />} />} />
       </Routes>
     </Router>
   );
