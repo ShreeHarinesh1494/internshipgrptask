@@ -146,15 +146,7 @@ From device registration to dynamic dashboards and threshold-based notifications
 - Scalable backend with RESTful architecture
 - Dynamic UI with responsive design
 
----
 
-### 🔗 Future Scope
-- Integration with real IoT sensors
-- Advanced analytics & machine learning predictions
-- Cloud deployment (AWS/GCP)
-- Role-based access management
 
----
 
-> ⚠️ Note: This project uses simulated data but is designed to scale and integrate real sensor feeds with minor backend adjustments.
 
